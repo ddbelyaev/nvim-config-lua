@@ -86,7 +86,7 @@ map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true})
 map('n', '<leader>h', '<cmd>lua vim.lsp.buf.hover()<CR>')
 
 map('n', '<leader>gs', '<cmd>G<CR>')
-map('n', '<leader>gc', '<cmd>Gcommit<CR>')
+map('n', '<leader>gc', '<cmd>Git commit<CR>')
 map('n', '<leader>gp', '<cmd>Gpush<CR>')
 
 -- nmap <leader>gh :diffget //3<CR>
