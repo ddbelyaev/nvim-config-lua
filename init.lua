@@ -87,7 +87,7 @@ map('n', '<leader>h', '<cmd>lua vim.lsp.buf.hover()<CR>')
 
 map('n', '<leader>gs', '<cmd>G<CR>')
 map('n', '<leader>gc', '<cmd>Git commit<CR>')
-map('n', '<leader>gp', '<cmd>Gpush<CR>')
+map('n', '<leader>gp', '<cmd>Git push<CR>')
 
 -- nmap <leader>gh :diffget //3<CR>
 -- nmap <leader>gu :diffget //2<CR>
