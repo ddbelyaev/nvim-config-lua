@@ -85,5 +85,17 @@ map('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<S-Tab>"', {expr = true})
 map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true})
 map('n', '<leader>h', '<cmd>lua vim.lsp.buf.hover()<CR>')
 
+map('n', '<leader>gs', '<cmd>G<CR>')
+map('n', '<leader>gc', '<cmd>Gcommit<CR>')
+map('n', '<leader>gp', '<cmd>Gpush<CR>')
+
+-- nmap <leader>gh :diffget //3<CR>
+-- nmap <leader>gu :diffget //2<CR>
+-- nmap <leader>gs :G<CR>
+-- nmap <leader>gc :Gcommit<CR>
+-- nmap <leader>gp :Gpush<CR>
+
 local opts = { noremap=true, silent=true }
 vim.api.nvim_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+
+
