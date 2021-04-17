@@ -1,0 +1,5 @@
+{
+	"suggest.noselect": false,
+	"lua.enable": false,
+	"Lua.completion.enable": true
+}

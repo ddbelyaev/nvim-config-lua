@@ -25,37 +25,58 @@ paq {'kabouzeid/nvim-lspinstall'}
 paq {'nvim-lua/completion-nvim'}
 paq {'ghifarit53/tokyonight-vim'}
 paq {'fatih/vim-go'}
+paq {'tpope/vim-fugitive'}
 paq {'jiangmiao/auto-pairs'}
-
 vim.cmd 'colorscheme tokyonight'
 
+-- Configure lua language server for neovim development
+local lua_settings = {
+  Lua = {
+    runtime = {
+      -- LuaJIT in the case of Neovim
+      version = 'LuaJIT',
+      path = vim.split(package.path, ';'),
+    },
+    diagnostics = {
+      -- Get the language server to recognize the `vim` global
+      globals = {'vim'},
+    },
+    workspace = {
+      -- Make the server aware of Neovim runtime files
+      library = {
+        [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+        [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
+      },
+    },
+  }
+}
+
+local on_attach = require'completion'.on_attach
+
 local function setup_servers()
-  require'lspinstall'.setup()
-  local servers = require'lspinstall'.installed_servers()
-  for _, server in pairs(servers) do
-    require'lspconfig'[server].setup{
-        on_attach=require'completion'.on_attach,
-        settings = {
-            Lua = {
-                runtime = {
--- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-                    version = 'LuaJIT',
--- Setup your lua path
-                    path = vim.split(package.path, ';')
-                },
-                diagnostics = {
--- Get the language server to recognize the `vim` global
-                    globals = {'vim'}
-                },
-                workspace = {
--- Make the server aware of Neovim runtime files
-                    library = {[vim.fn.expand('$VIMRUNTIME/lua')] = true, [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true}
-                }
-            }
-        }
-    }
-  end
+    require'lspinstall'.setup()
+    local config = {}
+    local servers = require'lspinstall'.installed_servers()
+    for _, server in pairs(servers) do
+        if server == 'lua' then
+            config.settings = lua_settings
+        end
+
+        config.on_attach = on_attach
+
+        require'lspconfig'[server].setup(config)
+    end
 end
+
+-- local function setup_servers()
+--   require'lspinstall'.setup()
+--   local servers = require'lspinstall'.installed_servers()
+--   for _, server in pairs(servers) do
+--     require'lspconfig'[server].setup{
+--         on_attach=require'completion'.on_attach,
+--     }
+--   end
+-- end
 
 setup_servers()
 
@@ -91,11 +112,6 @@ map('n', '<leader>gp', '<cmd>Git push<CR>')
 
 -- nmap <leader>gh :diffget //3<CR>
 -- nmap <leader>gu :diffget //2<CR>
--- nmap <leader>gs :G<CR>
--- nmap <leader>gc :Gcommit<CR>
--- nmap <leader>gp :Gpush<CR>
 
 local opts = { noremap=true, silent=true }
 vim.api.nvim_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-
-
