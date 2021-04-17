@@ -14,7 +14,15 @@ local function opt(scope, key, value)
   if scope ~= 'o' then scopes['o'][key] = value end
 end
 
-vim.g.mapleader = ' '
+g.mapleader = ' '
+g.completion_sorting = 'length'
+g.completion_matching_strategy_list = {'exact', 'substring', 'fuzzy', 'all'}
+g.completion_enable_snippet = 'UltiSnips'
+g.UltiSnipsExpandTrigger="<Nop>"
+g.UltiSnipsListSnippets="<Nop>"
+g.UltiSnipsJumpForwardTrigger="<c-j>"
+g.UltiSnipsJumpBackwardTrigger="<c-k>"
+g.UltiSnipsRemoveSelectModeMappings = 0
 
 -------------------- PLUGINS -------------------------------
 vim.cmd 'packadd paq-nvim'               -- load the package manager
@@ -30,6 +38,8 @@ paq {'jiangmiao/auto-pairs'}
 paq {'nvim-lua/popup.nvim'}
 paq {'nvim-lua/plenary.nvim'}
 paq {'nvim-telescope/telescope.nvim'}
+paq {'SirVer/ultisnips'}
+paq {'honza/vim-snippets'}
 
 vim.cmd 'colorscheme tokyonight'
 
@@ -111,4 +121,3 @@ map('n', '<leader>fh', '<cmd>lua require("telescope.builtin").help_tags()<cr>')
 
 local opts = { noremap=true, silent=true }
 vim.api.nvim_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-
