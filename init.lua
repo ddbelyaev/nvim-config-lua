@@ -84,6 +84,7 @@ opt('o', 'splitright', true)              -- Put new windows right of current
 map('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<S-Tab>"', {expr = true})
 map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true})
 map('n', '<leader>h', '<cmd>lua vim.lsp.buf.hover()<CR>')
+map('n', '<leader>q', '<cmd>bw<CR>')
 
 map('n', '<leader>gs', '<cmd>G<CR>')
 map('n', '<leader>gc', '<cmd>Git commit<CR>')
@@ -97,5 +98,4 @@ map('n', '<leader>gp', '<cmd>Gpush<CR>')
 
 local opts = { noremap=true, silent=true }
 vim.api.nvim_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-
 
