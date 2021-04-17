@@ -19,42 +19,51 @@ vim.g.mapleader = ' '
 -------------------- PLUGINS -------------------------------
 vim.cmd 'packadd paq-nvim'               -- load the package manager
 local paq = require('paq-nvim').paq  -- a convenient alias
-paq {'neovim/nvim-lspconfig'}
 paq {'savq/paq-nvim', opt = true}
+paq {'neovim/nvim-lspconfig'}
+paq {'tpope/vim-fugitive'}
 paq {'kabouzeid/nvim-lspinstall'}
 paq {'nvim-lua/completion-nvim'}
 paq {'ghifarit53/tokyonight-vim'}
 paq {'fatih/vim-go'}
 paq {'jiangmiao/auto-pairs'}
+paq {'nvim-lua/popup.nvim'}
+paq {'nvim-lua/plenary.nvim'}
+paq {'nvim-telescope/telescope.nvim'}
 
 vim.cmd 'colorscheme tokyonight'
 
-local function setup_servers()
-  require'lspinstall'.setup()
-  local servers = require'lspinstall'.installed_servers()
-  for _, server in pairs(servers) do
-    require'lspconfig'[server].setup{
-        on_attach=require'completion'.on_attach,
-        settings = {
-            Lua = {
-                runtime = {
--- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-                    version = 'LuaJIT',
--- Setup your lua path
-                    path = vim.split(package.path, ';')
-                },
-                diagnostics = {
--- Get the language server to recognize the `vim` global
-                    globals = {'vim'}
-                },
-                workspace = {
--- Make the server aware of Neovim runtime files
-                    library = {[vim.fn.expand('$VIMRUNTIME/lua')] = true, [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true}
-                }
-            }
+local lua_settings = {
+    Lua = {
+        runtime = {
+            -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+            version = 'LuaJIT',
+            -- Setup your lua path
+            path = vim.split(package.path, ';')
+        },
+        diagnostics = {
+            -- Get the language server to recognize the `vim` global
+            globals = {'vim'}
+        },
+        workspace = {
+            -- Make the server aware of Neovim runtime files
+            library = {[vim.fn.expand('$VIMRUNTIME/lua')] = true, [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true}
         }
     }
-  end
+}
+
+local function setup_servers()
+    require'lspinstall'.setup()
+    local servers = require'lspinstall'.installed_servers()
+    local config = {}
+    for _, server in pairs(servers) do
+        if server == 'lua' then
+            config.settings = lua_settings
+        end
+
+        config.on_attach=require'completion'.on_attach,
+        require'lspconfig'[server].setup(config)
+    end
 end
 
 setup_servers()
@@ -90,6 +99,10 @@ map('n', '<leader>gs', '<cmd>G<CR>')
 map('n', '<leader>gc', '<cmd>Git commit<CR>')
 map('n', '<leader>gp', '<cmd>Gpush<CR>')
 
+map('n', '<leader>ff', '<cmd>lua require("telescope.builtin").find_files()<cr>')
+map('n', '<leader>fg', '<cmd>lua require("telescope.builtin").live_grep()<cr>')
+map('n', '<leader>fb', '<cmd>lua require("telescope.builtin").buffers()<cr>')
+map('n', '<leader>fh', '<cmd>lua require("telescope.builtin").help_tags()<cr>')
 -- nmap <leader>gh :diffget //3<CR>
 -- nmap <leader>gu :diffget //2<CR>
 -- nmap <leader>gs :G<CR>
