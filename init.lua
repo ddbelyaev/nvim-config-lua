@@ -26,7 +26,7 @@ g.UltiSnipsRemoveSelectModeMappings = 0
 
 -------------------- PLUGINS -------------------------------
 vim.cmd 'packadd paq-nvim'               -- load the package manager
-local paq = require('paq-nvim').paq  -- a convenient alias
+local paq = require'paq-nvim'.paq  -- a convenient alias
 paq {'savq/paq-nvim', opt = true}
 paq {'neovim/nvim-lspconfig'}
 paq {'tpope/vim-fugitive'}
@@ -87,9 +87,9 @@ end
 local indent = 4
 opt('o', 'completeopt', 'menuone,noinsert,noselect')  -- Completion options
 opt('o', 'termguicolors', true)           -- True color support
-opt('b', 'expandtab', true)                           -- Use spaces instead of tabs
-opt('b', 'shiftwidth', indent)                        -- Size of an indent
-opt('b', 'smartindent', true)                         -- Insert indents automatically
+opt('b', 'expandtab', true)               -- Use spaces instead of tabs
+opt('b', 'shiftwidth', indent)            -- Size of an indent
+opt('b', 'smartindent', true)             -- Insert indents automatically
 opt('b', 'tabstop', indent)
 opt('w', 'cursorline', true)              -- Highlight cursor line
 opt('w', 'number', true)                  -- Show line numbers
