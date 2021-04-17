@@ -97,7 +97,7 @@ map('n', '<leader>q', '<cmd>bw<CR>')
 
 map('n', '<leader>gs', '<cmd>G<CR>')
 map('n', '<leader>gc', '<cmd>Git commit<CR>')
-map('n', '<leader>gp', '<cmd>Gpush<CR>')
+map('n', '<leader>gp', '<cmd>Git push<CR>')
 
 map('n', '<leader>ff', '<cmd>lua require("telescope.builtin").find_files()<cr>')
 map('n', '<leader>fg', '<cmd>lua require("telescope.builtin").live_grep()<cr>')
