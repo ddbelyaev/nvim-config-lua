@@ -40,8 +40,10 @@ paq {'nvim-lua/plenary.nvim'}
 paq {'nvim-telescope/telescope.nvim'}
 paq {'SirVer/ultisnips'}
 paq {'honza/vim-snippets'}
+paq {'ojroques/nvim-hardline'}
 
 vim.cmd 'colorscheme tokyonight'
+require('hardline').setup{theme='nord',}
 
 local lua_settings = {
     Lua = {
