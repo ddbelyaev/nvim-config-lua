@@ -1,7 +1,7 @@
 
 -------------------- HELPERS -------------------------------
 local api, cmd, fn, g = vim.api, vim.cmd, vim.fn, vim.g
-local scopes = {o = vim.o, b = vim.bo, w = vim.wo}
+local scopes = {o = vim.o, b = vim.bo, w = vim.wo, g = vim.g}
 
 local function map(mode, lhs, rhs, opts)
   local options = {noremap = true}
@@ -101,6 +101,7 @@ opt('w', 'wrap', false)                   -- Disable line wrap
 opt('o', 'scrolloff', 4 )                 -- Lines of context
 opt('o', 'splitbelow', true)              -- Put new windows below current
 opt('o', 'splitright', true)              -- Put new windows right of current
+opt('b', 'undofile', true)
 
 map('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<S-Tab>"', {expr = true})
 map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true})

@@ -1,3 +1,4 @@
 init.bcp.lua
 my_snippets/
 coc-settings.json
+.gitignore
