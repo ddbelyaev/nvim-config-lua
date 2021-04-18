@@ -1,4 +1,4 @@
-
+-- TODO: Refactor the file, so it is more comprehensible <18-04-21, ddbelyaev> --
 -------------------- HELPERS -------------------------------
 local api, cmd, fn, g = vim.api, vim.cmd, vim.fn, vim.g
 local scopes = {o = vim.o, b = vim.bo, w = vim.wo, g = vim.g}
@@ -46,36 +46,39 @@ vim.cmd 'colorscheme tokyonight'
 require('hardline').setup{theme='nord',}
 
 local lua_settings = {
-    Lua = {
-        runtime = {
-            -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-            version = 'LuaJIT',
-            -- Setup your lua path
-            path = vim.split(package.path, ';')
-        },
-        diagnostics = {
-            -- Get the language server to recognize the `vim` global
-            globals = {'vim'}
-        },
-        workspace = {
-            -- Make the server aware of Neovim runtime files
-            library = {[vim.fn.expand('$VIMRUNTIME/lua')] = true, [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true}
-        }
+  Lua = {
+    runtime = {
+      -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+      version = 'LuaJIT',
+      -- Setup your lua path
+      path = vim.split(package.path, ';')
+    },
+    diagnostics = {
+      -- Get the language server to recognize the `vim` global
+      globals = {'vim'}
+    },
+    workspace = {
+      -- Make the server aware of Neovim runtime files
+      library = {[vim.fn.expand('$VIMRUNTIME/lua')] = true, [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true}
     }
+  }
 }
 
-local function setup_servers()
-    require'lspinstall'.setup()
-    local servers = require'lspinstall'.installed_servers()
-    local config = {}
-    for _, server in pairs(servers) do
-        if server == 'lua' then
-            config.settings = lua_settings
-        end
+local indent = 4
 
-        config.on_attach=require'completion'.on_attach,
-        require'lspconfig'[server].setup(config)
+local function setup_servers()
+  require'lspinstall'.setup()
+  local servers = require'lspinstall'.installed_servers()
+  local config = {}
+  for _, server in pairs(servers) do
+    if server == 'lua' then
+      config.settings = lua_settings
+      indent = 2
     end
+
+    config.on_attach=require'completion'.on_attach,
+    require'lspconfig'[server].setup(config)
+  end
 end
 
 setup_servers()
@@ -86,7 +89,6 @@ require'lspinstall'.post_install_hook = function ()
   vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
 end
 
-local indent = 4
 opt('o', 'completeopt', 'menuone,noinsert,noselect')  -- Completion options
 opt('o', 'termguicolors', true)           -- True color support
 opt('b', 'expandtab', true)               -- Use spaces instead of tabs
