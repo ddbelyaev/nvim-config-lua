@@ -41,6 +41,9 @@ paq {'nvim-telescope/telescope.nvim'}
 paq {'SirVer/ultisnips'}
 paq {'honza/vim-snippets'}
 paq {'ojroques/nvim-hardline'}
+paq {'mhinz/vim-startify'}
+-- TODO: Set up dashboard-nvim properly <19-04-21, ddbelyaev> --
+-- paq {'glepnir/dashboard-nvim'}
 
 vim.cmd 'colorscheme tokyonight'
 require('hardline').setup{theme='nord',}
