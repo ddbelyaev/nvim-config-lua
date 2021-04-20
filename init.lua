@@ -128,4 +128,4 @@ map('n', '<leader>fh', '<cmd>lua require("telescope.builtin").help_tags()<cr>')
 -- nmap <leader>gc :Gcommit<CR>
 -- nmap <leader>gp :Gpush<CR>
 
-vim.api.nvim_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+map('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>')
