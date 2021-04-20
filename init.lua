@@ -2,6 +2,7 @@
 -------------------- HELPERS -------------------------------
 local api, cmd, fn, g = vim.api, vim.cmd, vim.fn, vim.g
 local scopes = {o = vim.o, b = vim.bo, w = vim.wo, g = vim.g}
+local opts = { noremap=true, silent=true }
 
 local function map(mode, lhs, rhs, opts)
   local options = {noremap = true}
@@ -127,5 +128,4 @@ map('n', '<leader>fh', '<cmd>lua require("telescope.builtin").help_tags()<cr>')
 -- nmap <leader>gc :Gcommit<CR>
 -- nmap <leader>gp :Gpush<CR>
 
-local opts = { noremap=true, silent=true }
 vim.api.nvim_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
