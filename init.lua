@@ -33,7 +33,8 @@ paq {'neovim/nvim-lspconfig'}
 paq {'tpope/vim-fugitive'}
 paq {'kabouzeid/nvim-lspinstall'}
 paq {'nvim-lua/completion-nvim'}
-paq {'ghifarit53/tokyonight-vim'}
+-- paq {'ghifarit53/tokyonight-vim'}
+paq {'folke/tokyonight.nvim'}
 paq {'fatih/vim-go'}
 paq {'jiangmiao/auto-pairs'}
 paq {'nvim-lua/popup.nvim'}
