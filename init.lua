@@ -131,6 +131,8 @@ map('n', '<leader>fh', '<cmd>lua require("telescope.builtin").help_tags()<cr>')
 
 map('n', '<leader>j', '<cmd>wincmd j<CR>')
 map('n', '<leader>k', '<cmd>wincmd k<CR>')
+map('n', '<C-l>', '<cmd>wincmd l<CR>')
+map('n', '<C-h>', '<cmd>wincmd h<CR>')
 
 map('n','gD','<cmd>lua vim.lsp.buf.declaration()<CR>')
 map('n','gd','<cmd>lua vim.lsp.buf.definition()<CR>')
