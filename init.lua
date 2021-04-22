@@ -75,13 +75,15 @@ local function setup_servers()
   require'lspinstall'.setup()
   local servers = require'lspinstall'.installed_servers()
   local config = {}
+  config.on_attach=require'completion'.on_attach
+  config.root_dir=require'lspconfig'.util.root_pattern('.git')
+
   for _, server in pairs(servers) do
     if server == 'lua' then
       config.settings = lua_settings
       indent = 2
     end
 
-    config.on_attach=require'completion'.on_attach,
     require'lspconfig'[server].setup(config)
   end
 end
