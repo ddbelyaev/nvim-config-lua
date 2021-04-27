@@ -111,6 +111,7 @@ opt('o', 'scrolloff', 4 )                 -- Lines of context
 opt('o', 'splitbelow', true)              -- Put new windows below current
 opt('o', 'splitright', true)              -- Put new windows right of current
 opt('b', 'undofile', true)
+opt('w', 'colorcolumn', '100')
 
 map('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<S-Tab>"', {expr = true})
 map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true})
