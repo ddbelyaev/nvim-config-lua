@@ -98,20 +98,20 @@ end
 
 opt('o', 'completeopt', 'menuone,noinsert,noselect')  -- Completion options
 opt('o', 'termguicolors', true)           -- True color support
+opt('o', 'scrolloff', 4 )                 -- Lines of context
+opt('o', 'splitbelow', true)              -- Put new windows below current
+opt('o', 'splitright', true)              -- Put new windows right of current
 opt('b', 'expandtab', true)               -- Use spaces instead of tabs
 opt('b', 'shiftwidth', indent)            -- Size of an indent
 opt('b', 'smartindent', true)             -- Insert indents automatically
 opt('b', 'tabstop', indent)
+opt('b', 'undofile', true)                -- Allows persistent undos
 opt('w', 'cursorline', true)              -- Highlight cursor line
 opt('w', 'number', true)                  -- Show line numbers
 opt('w', 'relativenumber', true)          -- Relative line numbers
 opt('w', 'signcolumn', 'yes')             -- Show sign column
 opt('w', 'wrap', false)                   -- Disable line wrap
-opt('o', 'scrolloff', 4 )                 -- Lines of context
-opt('o', 'splitbelow', true)              -- Put new windows below current
-opt('o', 'splitright', true)              -- Put new windows right of current
-opt('b', 'undofile', true)
-opt('w', 'colorcolumn', '100')
+opt('w', 'colorcolumn', '100')            -- Show n-th column
 
 map('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<S-Tab>"', {expr = true})
 map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true})
@@ -121,16 +121,13 @@ map('n', '<leader>q', '<cmd>bw<CR>')
 map('n', '<leader>gs', '<cmd>G<CR>')
 map('n', '<leader>gc', '<cmd>Git commit<CR>')
 map('n', '<leader>gp', '<cmd>Git push<CR>')
+map('n', '<leader>gh', '<cmd>diffget //3<CR>')
+map('n', '<leader>gu', '<cmd>diffget //2<CR>')
 
 map('n', '<leader>ff', '<cmd>lua require("telescope.builtin").find_files()<cr>')
 map('n', '<leader>fg', '<cmd>lua require("telescope.builtin").live_grep()<cr>')
 map('n', '<leader>fb', '<cmd>lua require("telescope.builtin").buffers()<cr>')
 map('n', '<leader>fh', '<cmd>lua require("telescope.builtin").help_tags()<cr>')
--- nmap <leader>gh :diffget //3<CR>
--- nmap <leader>gu :diffget //2<CR>
--- nmap <leader>gs :G<CR>
--- nmap <leader>gc :Gcommit<CR>
--- nmap <leader>gp :Gpush<CR>
 
 map('n', '<leader>j', '<cmd>wincmd j<CR>')
 map('n', '<leader>k', '<cmd>wincmd k<CR>')
