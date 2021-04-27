@@ -96,6 +96,7 @@ require'lspinstall'.post_install_hook = function ()
   vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
 end
 
+-- Environment options
 opt('o', 'completeopt', 'menuone,noinsert,noselect')  -- Completion options
 opt('o', 'termguicolors', true)           -- True color support
 opt('o', 'scrolloff', 4 )                 -- Lines of context
@@ -113,27 +114,33 @@ opt('w', 'signcolumn', 'yes')             -- Show sign column
 opt('w', 'wrap', false)                   -- Disable line wrap
 opt('w', 'colorcolumn', '100')            -- Show n-th column
 
+-- Tab completions
 map('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<S-Tab>"', {expr = true})
 map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true})
-map('n', '<leader>h', '<cmd>lua vim.lsp.buf.hover()<CR>')
+
+-- Open/Close buffers
 map('n', '<leader>q', '<cmd>bw<CR>')
 
+-- Fugitive functions
 map('n', '<leader>gs', '<cmd>G<CR>')
 map('n', '<leader>gc', '<cmd>Git commit<CR>')
 map('n', '<leader>gp', '<cmd>Git push<CR>')
 map('n', '<leader>gh', '<cmd>diffget //3<CR>')
 map('n', '<leader>gu', '<cmd>diffget //2<CR>')
 
+-- Telescope functions
 map('n', '<leader>ff', '<cmd>lua require("telescope.builtin").find_files()<cr>')
 map('n', '<leader>fg', '<cmd>lua require("telescope.builtin").live_grep()<cr>')
 map('n', '<leader>fb', '<cmd>lua require("telescope.builtin").buffers()<cr>')
 map('n', '<leader>fh', '<cmd>lua require("telescope.builtin").help_tags()<cr>')
 
+-- Jump b/w windows
 map('n', '<leader>j', '<cmd>wincmd j<CR>')
 map('n', '<leader>k', '<cmd>wincmd k<CR>')
 map('n', '<C-l>', '<cmd>wincmd l<CR>')
 map('n', '<C-h>', '<cmd>wincmd h<CR>')
 
+-- LSP functions
 map('n','gD','<cmd>lua vim.lsp.buf.declaration()<CR>')
 map('n','gd','<cmd>lua vim.lsp.buf.definition()<CR>')
 map('n','K','<cmd>lua vim.lsp.buf.hover()<CR>')
