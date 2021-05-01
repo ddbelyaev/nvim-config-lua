@@ -1,4 +1,3 @@
--- TODO: Refactor the file, so it is more comprehensible <18-04-21, ddbelyaev> --
 -------------------- HELPERS -------------------------------
 local api, cmd, fn, g = vim.api, vim.cmd, vim.fn, vim.g
 local scopes = {o = vim.o, b = vim.bo, w = vim.wo, g = vim.g}
@@ -50,6 +49,7 @@ paq {'mhinz/vim-startify'}
 vim.cmd 'colorscheme tokyonight'
 require('hardline').setup{theme='nord',}
 
+-- Lua LSP settings for Neovim development
 local lua_settings = {
   Lua = {
     runtime = {
@@ -71,6 +71,7 @@ local lua_settings = {
 
 local indent = 4
 
+-- LSP settings
 local function setup_servers()
   require'lspinstall'.setup()
   local servers = require'lspinstall'.installed_servers()
