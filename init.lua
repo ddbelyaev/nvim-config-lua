@@ -15,9 +15,13 @@ local function opt(scope, key, value)
 end
 
 g.mapleader = ' '
+
 g.completion_sorting = 'length'
 g.completion_matching_strategy_list = {'exact', 'substring', 'fuzzy', 'all'}
 g.completion_enable_snippet = 'UltiSnips'
+g.completion_trigger_on_delete = 1
+g.completion_trigger_keyword_length = 0
+
 g.UltiSnipsExpandTrigger="<Nop>"
 g.UltiSnipsListSnippets="<Nop>"
 g.UltiSnipsJumpForwardTrigger="<c-j>"
@@ -98,6 +102,7 @@ require'lspinstall'.post_install_hook = function ()
 end
 
 -- Environment options
+opt('o', 'pumheight', 7)
 opt('o', 'completeopt', 'menuone,noinsert,noselect')  -- Completion options
 opt('o', 'termguicolors', true)           -- True color support
 opt('o', 'scrolloff', 4 )                 -- Lines of context
