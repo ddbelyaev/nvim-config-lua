@@ -47,11 +47,13 @@ paq {'SirVer/ultisnips'}
 paq {'honza/vim-snippets'}
 paq {'ojroques/nvim-hardline'}
 paq {'mhinz/vim-startify'}
+paq {'blackcauldron7/surround.nvim'}
 -- TODO: Set up dashboard-nvim properly <19-04-21, ddbelyaev> --
 -- paq {'glepnir/dashboard-nvim'}
 
 vim.cmd 'colorscheme tokyonight'
-require('hardline').setup{theme='nord',}
+require'hardline'.setup{theme='nord',}
+require'surround'.setup{}
 
 -- Lua LSP settings for Neovim development
 local lua_settings = {
