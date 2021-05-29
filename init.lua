@@ -29,8 +29,8 @@ g.UltiSnipsJumpBackwardTrigger="<c-k>"
 g.UltiSnipsRemoveSelectModeMappings = 0
 
 -------------------- PLUGINS -------------------------------
-vim.cmd 'packadd paq-nvim'               -- load the package manager
-local paq = require'paq-nvim'.paq  -- a convenient alias
+vim.cmd 'packadd paq-nvim' -- load the package manager
+local paq = require'paq-nvim'.paq -- a convenient alias
 paq {'savq/paq-nvim', opt = true}
 paq {'neovim/nvim-lspconfig'}
 paq {'tpope/vim-fugitive'}
@@ -57,18 +57,17 @@ require'surround'.setup{}
 local lua_settings = {
   Lua = {
     runtime = {
-      -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-      version = 'LuaJIT',
-      -- Setup your lua path
-      path = vim.split(package.path, ';')
+      version = 'LuaJIT', -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+      path = vim.split(package.path, ';') -- Setup your lua path
     },
     diagnostics = {
-      -- Get the language server to recognize the `vim` global
-      globals = {'vim'}
+      globals = {'vim'} -- Get the language server to recognize the `vim` global
     },
     workspace = {
-      -- Make the server aware of Neovim runtime files
-      library = {[vim.fn.expand('$VIMRUNTIME/lua')] = true, [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true}
+      library = { -- Make the server aware of Neovim runtime files
+        [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+        [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true
+      }
     }
   }
 }
@@ -104,21 +103,21 @@ end
 -- Environment options
 opt('o', 'pumheight', 7)
 opt('o', 'completeopt', 'menuone,noinsert,noselect')  -- Completion options
-opt('o', 'termguicolors', true)           -- True color support
-opt('o', 'scrolloff', 4 )                 -- Lines of context
-opt('o', 'splitbelow', true)              -- Put new windows below current
-opt('o', 'splitright', true)              -- Put new windows right of current
-opt('b', 'expandtab', true)               -- Use spaces instead of tabs
-opt('b', 'shiftwidth', indent)            -- Size of an indent
-opt('b', 'smartindent', true)             -- Insert indents automatically
+opt('o', 'termguicolors', true)                       -- True color support
+opt('o', 'scrolloff', 4 )                             -- Lines of context
+opt('o', 'splitbelow', true)                          -- Put new windows below current
+opt('o', 'splitright', true)                          -- Put new windows right of current
+opt('b', 'expandtab', true)                           -- Use spaces instead of tabs
+opt('b', 'shiftwidth', indent)                        -- Size of an indent
+opt('b', 'smartindent', true)                         -- Insert indents automatically
 opt('b', 'tabstop', indent)
-opt('b', 'undofile', true)                -- Allows persistent undos
-opt('w', 'cursorline', true)              -- Highlight cursor line
-opt('w', 'number', true)                  -- Show line numbers
-opt('w', 'relativenumber', true)          -- Relative line numbers
-opt('w', 'signcolumn', 'yes')             -- Show sign column
-opt('w', 'wrap', false)                   -- Disable line wrap
-opt('w', 'colorcolumn', '100')            -- Show n-th column
+opt('b', 'undofile', true)                            -- Allows persistent undos
+opt('w', 'cursorline', true)                          -- Highlight cursor line
+opt('w', 'number', true)                              -- Show line numbers
+opt('w', 'relativenumber', true)                      -- Relative line numbers
+opt('w', 'signcolumn', 'yes')                         -- Show sign column
+opt('w', 'wrap', false)                               -- Disable line wrap
+opt('w', 'colorcolumn', '100')                        -- Show n-th column
 
 -- Tab completions
 map('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<S-Tab>"', {expr = true})
