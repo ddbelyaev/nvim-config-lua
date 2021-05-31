@@ -22,12 +22,13 @@ g.completion_enable_snippet = 'UltiSnips'
 g.completion_trigger_on_delete = 1
 g.completion_trigger_keyword_length = 0
 
-g.UltiSnipsExpandTrigger="<Nop>"
-g.UltiSnipsListSnippets="<Nop>"
-g.UltiSnipsJumpForwardTrigger="<c-j>"
-g.UltiSnipsJumpBackwardTrigger="<c-k>"
+g.UltiSnipsExpandTrigger='<Nop>'
+g.UltiSnipsListSnippets='<Nop>'
+g.UltiSnipsJumpForwardTrigger='<c-j>'
+g.UltiSnipsJumpBackwardTrigger='<c-k>'
 g.UltiSnipsRemoveSelectModeMappings = 0
 
+g.surround_prefix = 'S'
 -------------------- PLUGINS -------------------------------
 vim.cmd 'packadd paq-nvim'               -- load the package manager
 local paq = require'paq-nvim'.paq  -- a convenient alias
@@ -35,8 +36,7 @@ paq {'savq/paq-nvim', opt = true}
 paq {'neovim/nvim-lspconfig'}
 paq {'tpope/vim-fugitive'}
 paq {'kabouzeid/nvim-lspinstall'}
-paq {'nvim-lua/completion-nvim'}
--- paq {'ghifarit53/tokyonight-vim'}
+paq {'nvim-lua/completion-nvim'} -- paq {'ghifarit53/tokyonight-vim'}
 paq {'folke/tokyonight.nvim'}
 paq {'fatih/vim-go'}
 paq {'jiangmiao/auto-pairs'}
