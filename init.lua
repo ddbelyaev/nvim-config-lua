@@ -145,6 +145,10 @@ map('n', '<leader>k', '<cmd>wincmd k<CR>')
 map('n', '<C-l>', '<cmd>wincmd l<CR>')
 map('n', '<C-h>', '<cmd>wincmd h<CR>')
 
+-- Move lines around
+map('n', '<C-k>', '<cmd>m -1<CR>')
+-- map('n', '<C-j>', '<cmd>m +1<CR>')
+
 -- LSP functions
 map('n','gD','<cmd>lua vim.lsp.buf.declaration()<CR>')
 map('n','gd','<cmd>lua vim.lsp.buf.definition()<CR>')
