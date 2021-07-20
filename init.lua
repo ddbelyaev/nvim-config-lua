@@ -20,7 +20,7 @@ g.completion_sorting = 'length'
 g.completion_matching_strategy_list = {'exact', 'substring', 'fuzzy', 'all'}
 g.completion_enable_snippet = 'UltiSnips'
 g.completion_trigger_on_delete = 1
-g.completion_trigger_keyword_length = 0
+g.completion_trigger_keyword_length = 1
 
 g.UltiSnipsExpandTrigger='<Nop>'
 g.UltiSnipsListSnippets='<Nop>'
@@ -80,7 +80,7 @@ local function setup_servers()
   local servers = require'lspinstall'.installed_servers()
   local config = {}
   config.on_attach=require'completion'.on_attach
-  config.root_dir=require'lspconfig'.util.root_pattern('.git')
+  --config.root_dir=require'lspconfig'.util.root_pattern('.git')
 
   for _, server in pairs(servers) do
     if server == 'lua' then
