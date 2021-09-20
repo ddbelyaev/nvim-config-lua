@@ -28,7 +28,6 @@ g.UltiSnipsJumpForwardTrigger='<c-j>'
 g.UltiSnipsJumpBackwardTrigger='<c-k>'
 g.UltiSnipsRemoveSelectModeMappings = 0
 
-g.surround_prefix = 'S'
 -------------------- PLUGINS -------------------------------
 vim.cmd 'packadd paq-nvim' -- load the package manager
 local paq = require'paq-nvim'.paq -- a convenient alias
@@ -47,7 +46,7 @@ paq {'SirVer/ultisnips'}
 paq {'honza/vim-snippets'}
 paq {'ojroques/nvim-hardline'}
 paq {'mhinz/vim-startify'}
-paq {'blackcauldron7/surround.nvim'}
+paq {'tpope/vim-surround'}
 
 vim.cmd 'colorscheme tokyonight'
 require'hardline'.setup{theme='nord',}
