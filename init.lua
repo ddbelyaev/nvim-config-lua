@@ -47,8 +47,9 @@ paq {'honza/vim-snippets'}
 paq {'ojroques/nvim-hardline'}
 paq {'mhinz/vim-startify'}
 paq {'tpope/vim-surround'}
+paq {'wadackel/vim-dogrun'}
 
-vim.cmd 'colorscheme tokyonight'
+vim.cmd 'colorscheme dogrun'
 require'hardline'.setup{theme='nord',}
 require'surround'.setup{}
 
