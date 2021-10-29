@@ -20,13 +20,29 @@ g.completion_sorting = 'length'
 g.completion_matching_strategy_list = {'exact', 'substring', 'fuzzy', 'all'}
 g.completion_enable_snippet = 'UltiSnips'
 g.completion_trigger_on_delete = 1
-g.completion_trigger_keyword_length = 0
+g.completion_trigger_keyword_length = 1
 
+-------------------- ULTISNIPS -----------------------------
 g.UltiSnipsExpandTrigger='<Nop>'
 g.UltiSnipsListSnippets='<Nop>'
 g.UltiSnipsJumpForwardTrigger='<c-j>'
 g.UltiSnipsJumpBackwardTrigger='<c-k>'
 g.UltiSnipsRemoveSelectModeMappings = 0
+
+-------------------- GOLANG --------------------------------
+g.go_def_mode = "gopls"
+-- setlocal omnifunc=go#complete#Complete
+--
+-- autocmd FileType go nmap <leader>b  <Plug>(go-build)
+-- autocmd FileType go nmap <leader>r  <Plug>(go-run)
+-- autocmd FileType go nmap <leader>t  <Plug>(go-test)
+
+g.go_highlight_functions = 1
+g.go_highlight_function_calls = 1
+g.go_highlight_types = 1
+g.go_highlight_operators = 1
+g.go_highlight_fields = 1
+--"let g:go_auto_sameids = 1
 
 -------------------- PLUGINS -------------------------------
 vim.cmd 'packadd paq-nvim' -- load the package manager
@@ -35,7 +51,8 @@ paq {'savq/paq-nvim', opt = true}
 paq {'neovim/nvim-lspconfig'}
 paq {'tpope/vim-fugitive'}
 paq {'kabouzeid/nvim-lspinstall'}
-paq {'nvim-lua/completion-nvim'} -- paq {'ghifarit53/tokyonight-vim'}
+paq {'nvim-lua/completion-nvim'}
+--paq {'ghifarit53/tokyonight-vim'}
 paq {'folke/tokyonight.nvim'}
 paq {'fatih/vim-go'}
 paq {'jiangmiao/auto-pairs'}
@@ -48,10 +65,7 @@ paq {'ojroques/nvim-hardline'}
 paq {'mhinz/vim-startify'}
 paq {'tpope/vim-surround'}
 paq {'wadackel/vim-dogrun'}
-
-vim.cmd 'colorscheme dogrun'
-require'hardline'.setup{theme='nord',}
-require'surround'.setup{}
+paq {'mangeshrex/uwu.vim'}
 
 -- Lua LSP settings for Neovim development
 local lua_settings = {
@@ -166,3 +180,17 @@ map('n','<leader>ar','<cmd>lua vim.lsp.buf.rename()<CR>')
 map('n','<leader>=', '<cmd>lua vim.lsp.buf.formatting()<CR>')
 map('n','<leader>ai','<cmd>lua vim.lsp.buf.incoming_calls()<CR>')
 map('n','<leader>ao','<cmd>lua vim.lsp.buf.outgoing_calls()<CR>')
+
+vim.cmd 'set t_Co=256'
+-- Example config in Lua
+vim.g.tokyonight_style = "night"
+vim.g.tokyonight_italic_functions = false
+vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
+
+-- Change the "hint" color to the "orange" color, and make the "error" color bright red
+vim.g.tokyonight_colors = { hint = "orange", error = "#ff0000" }
+
+-- Load the colorscheme
+vim.cmd[[colorscheme uwu]]
+
+require'hardline'.setup{theme='nord',}
