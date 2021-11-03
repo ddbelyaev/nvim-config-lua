@@ -23,19 +23,21 @@ g.completion_trigger_on_delete = 1
 g.completion_trigger_keyword_length = 1
 
 -------------------- ULTISNIPS -----------------------------
-g.UltiSnipsExpandTrigger='<Nop>'
-g.UltiSnipsListSnippets='<Nop>'
-g.UltiSnipsJumpForwardTrigger='<c-j>'
-g.UltiSnipsJumpBackwardTrigger='<c-k>'
+g.UltiSnipsExpandTrigger = '<Nop>'
+g.UltiSnipsListSnippets = '<Nop>'
+g.UltiSnipsJumpForwardTrigger = '<c-j>'
+g.UltiSnipsJumpBackwardTrigger = '<c-k>'
 g.UltiSnipsRemoveSelectModeMappings = 0
 
 -------------------- GOLANG --------------------------------
 g.go_def_mode = "gopls"
--- setlocal omnifunc=go#complete#Complete
---
--- autocmd FileType go nmap <leader>b  <Plug>(go-build)
--- autocmd FileType go nmap <leader>r  <Plug>(go-run)
--- autocmd FileType go nmap <leader>t  <Plug>(go-test)
+api.nvim_command([[
+setlocal omnifunc=go#complete#Complete
+
+autocmd FileType go nmap <leader>b  <Plug>(go-build)
+autocmd FileType go nmap <leader>r  <Plug>(go-run)
+autocmd FileType go nmap <leader>t  <Plug>(go-test)
+]])
 
 g.go_highlight_functions = 1
 g.go_highlight_function_calls = 1
@@ -65,7 +67,8 @@ paq {'tpope/vim-surround'}
 paq {'wadackel/vim-dogrun'}
 paq {'mangeshrex/uwu.vim'}
 paq {'ghifarit53/tokyonight-vim'}
-paq {'folke/tokyonight.nvim'}
+-- paq {'folke/tokyonight.nvim'}
+paq {'dracula/vim'}
 
 -- Lua LSP settings for Neovim development
 local lua_settings = {
@@ -173,7 +176,6 @@ map('n','gi','<cmd>lua vim.lsp.buf.implementation()<CR>')
 map('n','gt','<cmd>lua vim.lsp.buf.type_definition()<CR>')
 map('n','<leader>gw','<cmd>lua vim.lsp.buf.document_symbol()<CR>')
 map('n','<leader>gW','<cmd>lua vim.lsp.buf.workspace_symbol()<CR>')
-map('n','<leader>ah','<cmd>lua vim.lsp.buf.hover()<CR>')
 map('n','<leader>af','<cmd>lua vim.lsp.buf.code_action()<CR>')
 map('n','<leader>ee','<cmd>lua vim.lsp.util.show_line_diagnostics()<CR>')
 map('n','<leader>ar','<cmd>lua vim.lsp.buf.rename()<CR>')
@@ -181,16 +183,18 @@ map('n','<leader>=', '<cmd>lua vim.lsp.buf.formatting()<CR>')
 map('n','<leader>ai','<cmd>lua vim.lsp.buf.incoming_calls()<CR>')
 map('n','<leader>ao','<cmd>lua vim.lsp.buf.outgoing_calls()<CR>')
 
-vim.cmd 'set t_Co=256'
--- Example config in Lua
-vim.g.tokyonight_style = "night"
-vim.g.tokyonight_italic_functions = false
-vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
+vim.cmd[[set t_Co=256]]
 
--- Change the "hint" color to the "orange" color, and make the "error" color bright red
-vim.g.tokyonight_colors = { hint = "orange", error = "#ff0000" }
+-- Tokyonight config
+g.tokyonight_style = "night"
+g.tokyonight_italic_functions = false
+g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
+g.tokyonight_colors = { hint = "orange", error = "#ff0000" }
+
+-- Dracula config
+g.dracula_colorterm = 1
 
 -- Load the colorscheme
-vim.cmd[[colorscheme uwu]]
+vim.cmd[[colorscheme tokyonight]]
 
 require'hardline'.setup{theme='nord',}
