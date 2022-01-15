@@ -16,18 +16,18 @@ end
 
 g.mapleader = ' '
 
-g.completion_sorting = 'length'
-g.completion_matching_strategy_list = {'exact', 'substring', 'fuzzy', 'all'}
-g.completion_enable_snippet = 'UltiSnips'
-g.completion_trigger_on_delete = 1
-g.completion_trigger_keyword_length = 1
-
--------------------- ULTISNIPS -----------------------------
-g.UltiSnipsExpandTrigger = '<Nop>'
-g.UltiSnipsListSnippets = '<Nop>'
-g.UltiSnipsJumpForwardTrigger = '<c-j>'
-g.UltiSnipsJumpBackwardTrigger = '<c-k>'
-g.UltiSnipsRemoveSelectModeMappings = 0
+-- g.completion_sorting = 'length'
+-- g.completion_matching_strategy_list = {'exact', 'substring', 'fuzzy', 'all'}
+-- g.completion_enable_snippet = 'UltiSnips'
+-- g.completion_trigger_on_delete = 1
+-- g.completion_trigger_keyword_length = 1
+--
+-- -------------------- ULTISNIPS -----------------------------
+-- g.UltiSnipsExpandTrigger = '<Nop>'
+-- g.UltiSnipsListSnippets = '<Nop>'
+-- g.UltiSnipsJumpForwardTrigger = '<c-j>'
+-- g.UltiSnipsJumpBackwardTrigger = '<c-k>'
+-- g.UltiSnipsRemoveSelectModeMappings = 0
 
 -------------------- GOLANG --------------------------------
 g.go_def_mode = "gopls"
@@ -54,14 +54,11 @@ require('packer').startup(function()
   use {'tpope/vim-fugitive'}
   --use {'kabouzeid/nvim-lspinstall'}
   use {'williamboman/nvim-lsp-installer'}
-  use {'nvim-lua/completion-nvim'}
   use {'fatih/vim-go'}
   use {'jiangmiao/auto-pairs'}
   use {'nvim-lua/popup.nvim'}
   use {'nvim-lua/plenary.nvim'}
   use {'nvim-telescope/telescope.nvim'}
-  use {'SirVer/ultisnips'}
-  use {'honza/vim-snippets'}
   use {'ojroques/nvim-hardline'}
   use {'mhinz/vim-startify'}
   use {'tpope/vim-surround'}
@@ -72,6 +69,10 @@ require('packer').startup(function()
   use {'dracula/vim'}
   use {'hrsh7th/nvim-cmp'}
   use {'hrsh7th/cmp-nvim-lsp'}
+  use {'honza/vim-snippets'}
+  --use {'SirVer/ultisnips'}
+  use {'dcampos/nvim-snippy'}
+  use {'dcampos/cmp-snippy'}
 end)
 
 -- Lua LSP settings for Neovim development
@@ -113,6 +114,18 @@ lsp_installer.on_server_ready(function(server)
   server:setup(opts)
 end)
 
+require('snippy').setup({
+    mappings = {
+        is = {
+            ['<Tab>'] = 'expand_or_advance',
+            ['<S-Tab>'] = 'previous',
+        },
+        nx = {
+            ['<leader>x'] = 'cut_text',
+        },
+    },
+})
+
 local cmp = require'cmp'
 
 cmp.setup({
@@ -121,8 +134,8 @@ cmp.setup({
     expand = function(args)
   -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
   -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-  -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
-      vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+      require('snippy').expand_snippet(args.body) -- For `snippy` users.
+  -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
     end,
   },
   mapping = {
@@ -141,8 +154,8 @@ cmp.setup({
     { name = 'nvim_lsp' },
     -- { name = 'vsnip' }, -- For vsnip users.
     -- { name = 'luasnip' }, -- For luasnip users.
-    { name = 'ultisnips' }, -- For ultisnips users.
-    -- { name = 'snippy' }, -- For snippy users.
+    -- { name = 'ultisnips' }, -- For ultisnips users.
+      { name = 'snippy' }, -- For snippy users.
   }, {
     { name = 'buffer' },
   })
