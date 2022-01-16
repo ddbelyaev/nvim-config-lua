@@ -29,6 +29,7 @@ g.mapleader = ' '
 -- g.UltiSnipsJumpBackwardTrigger = '<c-k>'
 -- g.UltiSnipsRemoveSelectModeMappings = 0
 
+
 -------------------- GOLANG --------------------------------
 g.go_def_mode = "gopls"
 api.nvim_command([[
@@ -119,6 +120,7 @@ require('snippy').setup({
         is = {
             ['<Tab>'] = 'expand_or_advance',
             ['<S-Tab>'] = 'previous',
+            ['<C-j>'] = 'next',
         },
         nx = {
             ['<leader>x'] = 'cut_text',
