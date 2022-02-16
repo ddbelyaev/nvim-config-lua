@@ -203,7 +203,7 @@ opt('w', 'number', true)                              -- Show line numbers
 opt('w', 'relativenumber', true)                      -- Relative line numbers
 opt('w', 'signcolumn', 'yes')                         -- Show sign column
 opt('w', 'wrap', false)                               -- Disable line wrap
-opt('w', 'colorcolumn', '100')                        -- Show n-th column
+opt('w', 'colorcolumn', '90')                        -- Show n-th column
 
 -- Tab completions
 map('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<S-Tab>"', {expr = true})
