@@ -70,6 +70,9 @@ require('packer').startup(function()
   use {'dracula/vim'}
   use {'hrsh7th/nvim-cmp'}
   use {'hrsh7th/cmp-nvim-lsp'}
+  use { 'hrsh7th/cmp-buffer' }
+  use { 'hrsh7th/cmp-path' }
+  use { 'hrsh7th/cmp-cmdline' }
   use {'honza/vim-snippets'}
   --use {'SirVer/ultisnips'}
   use {'dcampos/nvim-snippy'}
@@ -119,7 +122,7 @@ require('snippy').setup({
     mappings = {
         is = {
             ['<Tab>'] = 'expand_or_advance',
-            ['<S-Tab>'] = 'previous',
+            ['<C-k>'] = 'previous',
             ['<C-j>'] = 'next',
         },
         nx = {
@@ -131,6 +134,8 @@ require('snippy').setup({
 local cmp = require'cmp'
 
 cmp.setup({
+  completion = { completeopt = 'menu,menuone,noinsert' },
+  preselect = cmp.PreselectMode.None,
   snippet = {
 -- REQUIRED - you must specify a snippet engine
     expand = function(args)
@@ -153,11 +158,11 @@ cmp.setup({
     ["<S-Tab>"] = cmp.mapping(cmp.mapping.select_prev_item(), {"i", "s"}),
   },
   sources = cmp.config.sources({
+    { name = 'snippy' }, -- For snippy users.
     { name = 'nvim_lsp' },
     -- { name = 'vsnip' }, -- For vsnip users.
     -- { name = 'luasnip' }, -- For luasnip users.
     -- { name = 'ultisnips' }, -- For ultisnips users.
-      { name = 'snippy' }, -- For snippy users.
   }, {
     { name = 'buffer' },
   })
@@ -188,7 +193,7 @@ cmp.setup.cmdline(':', {
 
 -- Environment options
 opt('o', 'pumheight', 7)
-opt('o', 'completeopt', 'menuone,noinsert,noselect')  -- Completion options
+-- opt('o', 'completeopt', 'menu,menuone,noinsert,noselect')  -- Completion options
 opt('o', 'termguicolors', true)                       -- True color support
 opt('o', 'scrolloff', 4 )                             -- Lines of context
 opt('o', 'splitbelow', true)                          -- Put new windows below current
