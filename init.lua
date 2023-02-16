@@ -58,14 +58,19 @@ require('packer').startup(function()
   use {'fatih/vim-go'}
   use {'jiangmiao/auto-pairs'}
   use {'nvim-lua/popup.nvim'}
-  use {'nvim-lua/plenary.nvim'}
-  use {'nvim-telescope/telescope.nvim'}
+  use {
+      'nvim-telescope/telescope.nvim', tag = '0.1.0',
+    -- or                            , branch = '0.1.x',
+      requires = { {'nvim-lua/plenary.nvim'} }
+    }
+
   use {'ojroques/nvim-hardline'}
   use {'mhinz/vim-startify'}
   use {'tpope/vim-surround'}
   use {'wadackel/vim-dogrun'}
   use {'mangeshrex/uwu.vim'}
   use {'ghifarit53/tokyonight-vim'}
+  use {'nvim-treesitter/nvim-treesitter'}
   -- use {'folke/tokyonight.nvim'}
   use {'dracula/vim'}
   use {'hrsh7th/nvim-cmp'}
@@ -184,6 +189,37 @@ cmp.setup.cmdline(':', {
   })
 })
 
+require('telescope').setup{
+  defaults = {
+    -- Default configuration for telescope goes here:
+    -- config_key = value,
+    mappings = {
+      i = {
+        -- map actions.which_key to <C-h> (default: <C-/>)
+        -- actions.which_key shows the mappings for your picker,
+        -- e.g. git_{create, delete, ...}_branch for the git_branches picker
+        ["<C-h>"] = "which_key"
+      }
+    }
+  },
+  pickers = {
+    -- Default configuration for builtin pickers goes here:
+    -- picker_name = {
+    --   picker_config_key = value,
+    --   ...
+    -- }
+    -- Now the picker_config_key will be applied every time you call this
+    -- builtin picker
+  },
+  extensions = {
+    -- Your extension configuration goes here:
+    -- extension_name = {
+    --   extension_config_key = value,
+    -- }
+    -- please take a look at the readme of the extension you want to configure
+  }
+}
+
 -- -- Setup lspconfig.
 -- local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 -- -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
@@ -205,7 +241,7 @@ opt('b', 'tabstop', indent)
 opt('b', 'undofile', true)                            -- Allows persistent undos
 opt('w', 'cursorline', true)                          -- Highlight cursor line
 opt('w', 'number', true)                              -- Show line numbers
-opt('w', 'relativenumber', true)                      -- Relative line numbers
+opt('w', 'relativenumber', false)                      -- Relative line numbers
 opt('w', 'signcolumn', 'yes')                         -- Show sign column
 opt('w', 'wrap', false)                               -- Disable line wrap
 opt('w', 'colorcolumn', '90')                        -- Show n-th column
@@ -268,7 +304,9 @@ g.tokyonight_colors = { hint = "orange", error = "#ff0000" }
 -- Dracula config
 g.dracula_colorterm = 1
 
+
 -- Load the colorscheme
-vim.cmd[[colorscheme tokyonight]]
+vim.cmd[[colorscheme dracula]]
+vim.cmd[[autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE]]
 
 require'hardline'.setup{theme='nord',}
