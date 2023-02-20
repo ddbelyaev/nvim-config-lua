@@ -103,8 +103,6 @@ local lua_settings = {
   }
 }
 
-local indent = 4
-
 -- LSP settings
 local lsp_installer = require("nvim-lsp-installer")
 
@@ -227,6 +225,8 @@ require('telescope').setup{
 --     capabilities = capabilities
 -- }
 
+local indent = 4
+
 -- Environment options
 opt('o', 'pumheight', 7)
 -- opt('o', 'completeopt', 'menu,menuone,noinsert,noselect')  -- Completion options
@@ -252,6 +252,9 @@ map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true})
 
 -- Open/Close buffers
 map('n', '<leader>q', '<cmd>bw<CR>')
+
+-- Open terminal
+map('n', '<leader>t', '<cmd>split term://zsh<CR>')
 
 -- Fugitive functions
 map('n', '<leader>gs', '<cmd>G<CR>')
