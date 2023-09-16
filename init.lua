@@ -82,6 +82,7 @@ require('packer').startup(function()
   --use {'SirVer/ultisnips'}
   use {'dcampos/nvim-snippy'}
   use {'dcampos/cmp-snippy'}
+  -- use {'github/copilot.vim'}
 end)
 
 -- Lua LSP settings for Neovim development
@@ -254,7 +255,7 @@ map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true})
 map('n', '<leader>q', '<cmd>bw<CR>')
 
 -- Open terminal
-map('n', '<leader>t', '<cmd>split term://zsh<CR>')
+map('n', '<leader>t', '<cmd>split term://zsh | resize 5<CR>')
 
 -- Fugitive functions
 map('n', '<leader>gs', '<cmd>G<CR>')
