@@ -82,6 +82,7 @@ require('packer').startup(function()
   --use {'SirVer/ultisnips'}
   use {'dcampos/nvim-snippy'}
   use {'dcampos/cmp-snippy'}
+  use { 'tpope/vim-rails' }
   -- use {'github/copilot.vim'}
 end)
 
@@ -255,7 +256,7 @@ map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true})
 map('n', '<leader>q', '<cmd>bw<CR>')
 
 -- Open terminal
-map('n', '<leader>t', '<cmd>split term://zsh | resize 5<CR>')
+map('n', '<leader>t', '<cmd>split term://zsh | resize 7<CR>')
 
 -- Fugitive functions
 map('n', '<leader>gs', '<cmd>G<CR>')
@@ -279,11 +280,12 @@ map('n', '<C-h>', '<cmd>wincmd h<CR>')
 -- Move lines around
 map('n', '<C-k>', '<cmd>m .-2<CR>')
 map('n', '<C-j>', '<cmd>m .+1<CR>')
+map('n', '<S-o>', 'o<ESC>k')
 
 -- LSP functions
 map('n','gD','<cmd>lua vim.lsp.buf.declaration()<CR>')
 map('n','gd','<cmd>lua vim.lsp.buf.definition()<CR>')
-map('n','K','<cmd>lua vim.lsp.buf.hover()<CR>')
+map('n','K', '<cmd>lua vim.lsp.buf.hover()<CR>')
 map('n','gr','<cmd>lua vim.lsp.buf.references()<CR>')
 map('n','gs','<cmd>lua vim.lsp.buf.signature_help()<CR>')
 map('n','gi','<cmd>lua vim.lsp.buf.implementation()<CR>')
@@ -298,6 +300,9 @@ map('n','<leader>ai','<cmd>lua vim.lsp.buf.incoming_calls()<CR>')
 map('n','<leader>ao','<cmd>lua vim.lsp.buf.outgoing_calls()<CR>')
 
 vim.cmd[[set t_Co=256]]
+vim.cmd[[set noea]]
+
+vim.cmd[[set iskeyword-=.]]
 
 -- Tokyonight config
 g.tokyonight_style = "night"
